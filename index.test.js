@@ -1,18 +1,29 @@
 const { convertTimeToWords } = require('./index');
 
-// - 2:00 > two o'clock
-// - 2:03 > three past two
-// - 2:11 > eleven past two
-// - 2:15 > quarter past two
-// - 2:30 > half past two
-// - 2:33 > twenty seven to three
-// - 2:40 > twenty to three
-// - 2:55 > five to three
-
 describe('Time to words', () => {
   it('Handles midnight', () => {
     const timeInWords = convertTimeToWords('0:00');
     expect(timeInWords).toBe('midnight');
+  });
+
+  it("Handles o'clock properly - 8:00", () => {
+    const timeInWords = convertTimeToWords('8:00');
+    expect(timeInWords).toBe("eight o'clock");
+  });
+
+  it('Handles past time properly - 8:03', () => {
+    const timeInWords = convertTimeToWords('8:03');
+    expect(timeInWords).toBe('three past eight');
+  });
+
+  it('Handles quarter past properly - 8:15', () => {
+    const timeInWords = convertTimeToWords('8:15');
+    expect(timeInWords).toBe('quarter past eight');
+  });
+
+  it('Handles minutes to properly - 8:40', () => {
+    const timeInWords = convertTimeToWords('8:40');
+    expect(timeInWords).toBe('twenty to nine');
   });
 
   it('Handles 30 - 8:30', () => {
